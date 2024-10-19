@@ -1,0 +1,1 @@
+<bean id="userMapper" class="life.mj.community.mapper.UserMapper"/>
