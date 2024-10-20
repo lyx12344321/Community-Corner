@@ -19,14 +19,9 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-//        System.out.println(userMapper.t1());
-//        System.out.println(userMapper.t2());
-//        System.out.println(userMapper.t3());
-
-        try {
-            logDataSource();
-        } catch (SQLException e) {}
-
+        System.out.println(userMapper.t1());
+        System.out.println(userMapper.t2());
+        System.out.println(userMapper.t3());
         return "index";
     }
 

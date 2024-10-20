@@ -61,6 +61,7 @@ public class AuthorizeController {
             System.out.println(userMapper.insertUser(user));
 
             request.getSession().setAttribute("gitHubUser", gitHubUser);
+
             System.out.println("登陆成功");
             return "redirect:"+"/";
         }

@@ -2,6 +2,7 @@ package life.mj.community.mapper;
 
 import life.mj.community.model.User;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 public interface UserMapper {
 
 
-    @Insert("insert into users (account_id,name,token,GMY_CREATE,gmt_modified) values (#{name},#{account_id},#{token},#{gmt_create},#{gmt_modified})")
+    @Insert("insert into users (account_id,name,token,gmt_create,gmt_modified) values (#{account_id}, #{name}, #{token}, #{gmt_create}, #{gmt_modified})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
     int insertUser(User user);
 
     @Select("show databases ")
