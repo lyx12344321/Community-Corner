@@ -19,17 +19,18 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-        System.out.println(userMapper.t1());
-        System.out.println(userMapper.t2());
-        System.out.println(userMapper.t3());
+//        System.out.println(userMapper.t1());
+//        System.out.println(userMapper.t2());
+//        System.out.println(userMapper.t3());
         return "index";
     }
 
-    @Autowired
-    private DataSource dataSource;
-    @PostConstruct
-    public void logDataSource() throws SQLException {
-        System.out.println("Data Source URL: " + dataSource.getConnection().getMetaData().getURL());
-    }
+//    打印数据库连接url
+//    @Autowired
+//    private DataSource dataSource;
+//    @PostConstruct
+//    public void logDataSource() throws SQLException {
+//        System.out.println("Data Source URL: " + dataSource.getConnection().getMetaData().getURL());
+//    }
 
 }

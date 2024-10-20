@@ -1,6 +1,8 @@
 package life.mj.community.controller;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import life.mj.community.dto.AccessTokenDTO;
 import life.mj.community.dto.GitHubUser;
 import life.mj.community.mapper.UserMapper;
@@ -17,55 +19,69 @@ import java.util.UUID;
 @Controller
 public class AuthorizeController {
 
+    // 注入GitHubProvider
     @Autowired
     private GitHubProvider gitHubProvider;
 
+    // 注入UserMapper
     @Autowired
     private UserMapper userMapper;
 
+    // 注入GitHub客户端ID
     @Value("${github.client.id}")
     private String ClientId;
 
+    // 注入GitHub客户端密钥
     @Value("${github.client.secret}")
     private String ClientSecret;
 
+    // 注入GitHub重定向URI
     @Value("${github.redirect.uri}")
     private String RedirectUri;
 
 
-
+    // 处理GitHub回调
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
-                           HttpServletRequest request) {
-        System.out.println("into callback");
+                           HttpServletRequest request,
+                           HttpServletResponse response) {
+        // System.out.println("into callback");
+        // 创建AccessTokenDTO对象
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(ClientId);
         accessTokenDTO.setRedirect_uri(RedirectUri);
         accessTokenDTO.setCode(code);
         accessTokenDTO.setClient_secret(ClientSecret);
 
+        // 获取GitHub访问令牌
         String accessToken = gitHubProvider.getAccessToken(accessTokenDTO);
-        System.out.println(accessToken);
+        // System.out.println(accessToken);
+        // 获取GitHub用户信息
         GitHubUser gitHubUser = gitHubProvider.getUser(accessToken);
-        System.out.println(gitHubUser);
+        // System.out.println(gitHubUser);
 
+        // 如果GitHub用户ID不为空
         if (gitHubUser.getId() != null) {
 
+            // 创建User对象
             User user = new User();
-            user.setToken(UUID.randomUUID().toString());
+            // 生成随机token
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
             user.setName(gitHubUser.getName());
             user.setAccount_id(String.valueOf(gitHubUser.getId()));
             user.setGmt_create(System.currentTimeMillis());
             user.setGmt_modified(user.getGmt_create());
 
-            System.out.println(userMapper.insertUser(user));
+            // System.out.println(userMapper.insertUser(user));
 
-            request.getSession().setAttribute("gitHubUser", gitHubUser);
+            // 添加token到Cookie
+            response.addCookie(new Cookie("token", token));
 
             System.out.println("登陆成功");
-            return "redirect:"+"/";
+            return "redirect:" + "/";
         }
         System.out.println("登陆失败");
-        return "redirect:"+"/";
+        return "redirect:" + "/";
     }
 }
