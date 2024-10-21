@@ -5,7 +5,7 @@ import life.mj.community.model.User;
 import lombok.Data;
 
 @Data
-public class QuestionUserDTO {
+public class QuestionDTO {
 
     // 文章ID
     private int id;
@@ -30,7 +30,7 @@ public class QuestionUserDTO {
     // 用户
     private User user;
 
-    public QuestionUserDTO(Question question, User user) {
+    public QuestionDTO(Question question, User user) {
         // 逐个赋值
         this.id = question.getId();
         this.title = question.getTitle();

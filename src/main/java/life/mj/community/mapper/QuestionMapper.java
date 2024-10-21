@@ -13,6 +13,6 @@ public interface QuestionMapper {
     @Insert("insert into question (title,description,gmt_create,gmt_modified,creator,tag) values (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
     int creatQuestion(Question question);
 
-    @Select("select * from question limit 10")
+    @Select("select * from question")
     List<Question> list();
 }
