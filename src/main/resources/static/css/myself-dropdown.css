@@ -29,3 +29,7 @@
 .myself-dropdown-content a:hover {
     background-color: #f1f1f1;
 }
+
+.myself-center a {
+    text-align: center;
+}
