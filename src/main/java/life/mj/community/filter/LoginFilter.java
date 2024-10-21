@@ -30,22 +30,26 @@ public class LoginFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
 
-        // 遍历请求中的所有Cookie
-        for (Cookie cookie : req.getCookies()) {
-            // 如果Cookie的名称为token
-            if (cookie.getName().equals("token")) {
-                // 获取Cookie的值
-                String token = cookie.getValue();
-                // 根据token查询用户
-                User user = userMapper.selectUserByToken(token);
-                // 如果用户存在
-                if (user != null) {
-                    // 将用户存入Session中
-                    req.getSession().setAttribute("user", user);
+        if (req.getCookies() != null) {
+            // 遍历请求中的所有Cookie
+            for (Cookie cookie : req.getCookies()) {
+                // 如果Cookie的名称为token
+                if (cookie.getName().equals("token")) {
+                    // 获取Cookie的值
+                    String token = cookie.getValue();
+                    // 根据token查询用户
+                    User user = userMapper.selectUserByToken(token);
+                    // 如果用户存在
+                    if (user != null) {
+                        // 将用户存入Session中
+                        req.getSession().setAttribute("user", user);
+                    }
+                    break;
                 }
-                break;
             }
         }
+
+
         // 继续执行下一个过滤器或请求处理
         chain.doFilter(request, response);
     }
