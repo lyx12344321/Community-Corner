@@ -10,7 +10,7 @@ public interface UserMapper {
 
 
     // 插入用户信息
-    @Insert("insert into users (account_id,name,token,gmt_create,gmt_modified) values (#{account_id}, #{name}, #{token}, #{gmt_create}, #{gmt_modified})")
+    @Insert("insert into users (account_id,name,token,gmt_create,gmt_modified) values (#{accountId}, #{name}, #{token}, #{gmtCreate}, #{gmtModified})")
     int insertUser(User user);
 
     // 根据token查询用户信息

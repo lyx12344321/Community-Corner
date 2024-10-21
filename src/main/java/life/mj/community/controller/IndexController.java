@@ -21,24 +21,11 @@ public class IndexController {
     // 处理根路径的GET请求
     @GetMapping("/")
     public String index(HttpServletRequest request) {
+        return "index";
+    }
 
-        // 遍历请求中的所有Cookie
-        for (Cookie cookie : request.getCookies()) {
-            // 如果Cookie的名称为token
-            if (cookie.getName().equals("token")) {
-                // 获取Cookie的值
-                String token = cookie.getValue();
-                // 根据token查询用户
-                User user = userMapper.selectUserByToken(token);
-                // 如果用户存在
-                if (user != null)
-                    // 将用户存入Session中
-                    request.getSession().setAttribute("user", user);
-                break;
-            }
-        }
-
-        // 返回index页面
+    @GetMapping("/index")
+    public String ToIndex(HttpServletRequest request) {
         return "index";
     }
 

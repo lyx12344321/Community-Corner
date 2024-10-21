@@ -11,15 +11,17 @@ public class User {
     // 用户ID
     private Integer id;
     // 账户ID
-    private String account_id;
+    private String accountId;
     // 用户名
-    private String name;
+    private String Name;
     // 令牌
     private String token;
     // 创建时间
-    private Long gmt_create;
+    private Long gmtCreate;
     // 修改时间
-    private Long gmt_modified;
+    private Long gmtModified;
+    // 头像
+    private String avatarUrl;
 
 
 }
