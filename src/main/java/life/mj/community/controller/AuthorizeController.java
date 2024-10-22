@@ -73,7 +73,7 @@ public class AuthorizeController {
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
 
-             System.out.println(userMapper.insertUser(user));
+//             System.out.println(userMapper.insertUser(user));
 
             // 添加token到Cookie
             response.addCookie(new Cookie("token", token));

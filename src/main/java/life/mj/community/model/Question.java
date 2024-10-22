@@ -10,6 +10,7 @@ public class Question {
     private int id;
     // 文章标题
     private String title;
+    String text;
     // 文章描述
     private String description;
     // 创建时间
@@ -32,6 +33,7 @@ public class Question {
         return "Question{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
                 ", description='" + description + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +

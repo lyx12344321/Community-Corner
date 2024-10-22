@@ -2,7 +2,7 @@ package life.mj.community.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import life.mj.community.dto.IndexQuestionsPageDTO;
+import life.mj.community.dto.QuestionsPaginationInfoDTO;
 import life.mj.community.dto.QuestionDTO;
 import life.mj.community.mapper.QuestionMapper;
 import life.mj.community.mapper.UserMapper;
@@ -23,7 +23,7 @@ public class QuestionService {
     @Autowired
     private UserMapper userMapper;
 
-    public IndexQuestionsPageDTO list(Integer page, Integer size) {
+    public QuestionsPaginationInfoDTO list(Integer page, Integer size) {
 
         PageHelper.startPage(page, size);
         List<Question> questions = questionMapper.list();
@@ -32,12 +32,15 @@ public class QuestionService {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         for (Question question : questions) {
             User user = userMapper.findById(question.getCreator());
+            if (user == null) {
+                user = new User("default");
+            }
             QuestionDTO questionDTO = new QuestionDTO(question, user);
             questionDTOList.add(questionDTO);
         }
-        IndexQuestionsPageDTO indexQuestionsPageDTO = new IndexQuestionsPageDTO();
-        indexQuestionsPageDTO.setQuestions(questionDTOList);
-        indexQuestionsPageDTO.setQuestionPageInfo(pageInfo);
-        return indexQuestionsPageDTO;
+        QuestionsPaginationInfoDTO questionsPaginationInfoDTO = new QuestionsPaginationInfoDTO(questionDTOList, pageInfo);
+        questionsPaginationInfoDTO.setQuestions(questionDTOList);
+        questionsPaginationInfoDTO.setQuestionPageInfo(pageInfo);
+        return questionsPaginationInfoDTO;
     }
 }

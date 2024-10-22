@@ -35,4 +35,12 @@ public class User {
                 ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
+
+    public User(String flag) {
+        if (flag.equals("default")) {
+            avatarUrl = "image/default_avatar.png";
+        }
+    }
+    public User() {}
+
 }

@@ -29,6 +29,7 @@ public class PublishController {
             @RequestParam(name = "title", required = false) String title,
             @RequestParam(name = "description", required = false) String description,
             @RequestParam(name = "tag", required = false) String tag,
+            @RequestParam(name = "text", required = false) String text,
             HttpServletRequest request,
             Model module
     ) {
@@ -38,10 +39,11 @@ public class PublishController {
         module.addAttribute("title", title);
         module.addAttribute("description", description);
         module.addAttribute("tag", tag);
+        module.addAttribute("text", text);
 
 
         // 校验非空
-        if (title == null || title == "" || description == null || description == "" || tag == null || tag == "") {
+        if (text == null || text.isEmpty() || title == null || title.isEmpty() || description == null || description.isEmpty() || tag == null || tag.isEmpty()) {
             module.addAttribute("error", "请填写标题、内容或标签");
             return "/publish";
         }
@@ -59,7 +61,7 @@ public class PublishController {
         question.setTag(tag);
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
-
+        question.setText(text);
 
         question.setCreator(user.getId());
 

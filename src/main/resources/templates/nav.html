@@ -5,7 +5,7 @@
 <body>
 <div th:fragment="nav">
     <head>
-        <link rel="stylesheet" href="css/myself-dropdown.css"/>
+        <link rel="stylesheet" href="/css/myself-dropdown.css"/>
     </head>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -38,12 +38,11 @@
                     </li>
 
                     <li class="myself-dropdown" th:if="${session.user}" style="width: 200px">
-                        <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6" href="#" style="all:unset"><img th:src="${session.user.getAvatarUrl()}" alt="头像" height="40px" style="margin-top: 5px"></a>
-                        <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6" href="#" th:text="${session.user.getName()}" style="padding-left: 0"><span class="caret"></span></a>
+                        <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6" href="#" style="all:unset"><img th:src="${session.user.avatarUrl}" alt="头像" height="40px" style="margin-top: 5px"></a>
+                        <a class="col-lg-6 col-md-6 col-sm-6 col-xs-6" href="#" th:text="${session.user.name}" style="padding-left: 0"><span class="caret"></span></a>
                         <div class="myself-dropdown-content" style="width: 200px">
                             <div class="myself-center">
-                                <a href="#">消息中心</a>
-                                <a href="#">账户信息</a>
+                                <a href="/profile/questions">消息中心</a>
                                 <a href="#">退出登录</a>
                             </div>
                         </div>

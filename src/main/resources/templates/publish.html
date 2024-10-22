@@ -3,11 +3,11 @@
 <head>
     <title>发布 - 码匠社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/bg.css"/>
-    <link rel="stylesheet" href="css/community.css"/>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/bg.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 </head>
 
 <body>
@@ -30,8 +30,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="title">问题补充（必填，请参照指南）</label>
+                    <label for="title">问题概要</label>
                     <textarea class="form-control" name="description" id="description" rows="10" th:text="${description}"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="text">问题正文（参考问题指南）<span style="color: red">*</span></label>
+                    <textarea class="form-control" name="text" id="description" rows="10" th:text="${text}"></textarea>
                 </div>
 
                 <div class="form-group">

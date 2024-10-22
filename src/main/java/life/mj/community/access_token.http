@@ -15,3 +15,9 @@ GET http://localhost:8090/callback?code=2aaa0dcce9236234b575&state=1j3hh123
 
 ###
 GET http://localhost:8090/test
+
+###
+GET localhost:8090/profile/
+
+
+
