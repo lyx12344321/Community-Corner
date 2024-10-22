@@ -27,6 +27,7 @@ public class QuestionDTO {
     private int likeCount;
     // 标签
     private String tag;
+    private String text;
     // 用户
     private User user;
 
@@ -42,6 +43,7 @@ public class QuestionDTO {
         this.viewCount = question.getViewCount();
         this.likeCount = question.getLikeCount();
         this.tag = question.getTag();
+        this.text = question.getText();
         this.user = user;
     }
 

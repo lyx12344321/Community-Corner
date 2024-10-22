@@ -21,6 +21,11 @@ public class ProfileService {
     private ProfileMapper profileMapper;
 
     public QuestionsPaginationInfoDTO getPage(String action, Integer page, Integer size, Model model, User user) {
+
+        if (user == null) {
+            return null;
+        }
+
         List<Question> questions;
         PageInfo<Question> pageInfo;
         List<QuestionDTO> questionDTOList;

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${question.title} + ' - 码匠社区'"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="/js/jQuery-3.7.1.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="/css/community.css"/>
+    <link rel="stylesheet" href="/css/question.css"/>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+
+
+</head>
+<body>
+<div th:insert="~{nav :: nav}"></div>
+
+<div class="container-fluid main">
+    <div class="row">
+
+        <div class="left-context col-lg-9 col-md-9 col-sm-12 col-xs-12">
+
+            <h2>
+                <span th:text="${question.title}"></span>
+            </h2>
+            <span class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0">
+                <a href="#"><span class="label label-primary" th:text="${question.tag}"></span></a>
+                <span style="vertical-align: middle;">&#xff5c;</span>&nbsp;&nbsp;作者&nbsp;
+                <a th:text="${question.user.name}"></a> &nbsp;&nbsp;&#xff5c;&nbsp;&nbsp;
+                <span th:text="${question.commentCount}"></span>&nbsp;个回复&nbsp;&nbsp;&#xff5c;&nbsp;&nbsp;
+                <span th:text="${question.viewCount}"></span>&nbsp;次浏览&nbsp;&nbsp;&#xff5c;&nbsp;&nbsp;
+                <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;发布
+            </span>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">描述:
+                <span th:text="${question.description}"></span>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:if="${session.user != null && question.user.id == session.user.id}">
+                <hr>
+                <a th:href="@{'/publish/' + ${question.id}}">
+                    <span class="glyphicon glyphicon-edit"></span>编辑
+                </a>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label for="text">问题正文（参考问题指南）<span style="color: red">*</span></label>
+                <textarea style="resize:none; background-color: #fff" readonly class="form-control" name="text" id="description" rows="10" th:text="${question.text}"></textarea>
+            </div>
+
+        </div>
+
+        <div class="right-context col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 30px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3>发起人</h3>
+                <div>
+                    <img th:src="@{${question.user.avatarUrl}}" alt='头像' style="width: 100px">
+                    <a href="#"><span th:text="${question.user.name}"></span></a>
+                </div>
+            </div>
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3>相关问题</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

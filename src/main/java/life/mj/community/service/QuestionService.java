@@ -43,4 +43,11 @@ public class QuestionService {
         questionsPaginationInfoDTO.setQuestionPageInfo(pageInfo);
         return questionsPaginationInfoDTO;
     }
+
+    public QuestionDTO findQuestionById(int id) {
+        Question question = questionMapper.findById(id);
+        User user = userMapper.findById(question.getCreator());
+        return new QuestionDTO(question, user);
+    }
+
 }

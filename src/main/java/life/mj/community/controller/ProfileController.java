@@ -30,8 +30,11 @@ public class ProfileController {
                           HttpServletRequest httpServletRequest,
                           Model model) {
 
-        QuestionsPaginationInfoDTO PageDTO = profileService.getPage(action, page, size, model, (User) httpServletRequest.getSession().getAttribute("user"));
-        model.addAttribute("pageDTO", PageDTO);
+        QuestionsPaginationInfoDTO pageDTO = profileService.getPage(action, page, size, model, (User) httpServletRequest.getSession().getAttribute("user"));
+        if (pageDTO == null) {
+            return "/error/not_logged_in";
+        }
+        model.addAttribute("pageDTO", pageDTO);
         return "profile";
     }
 

@@ -67,9 +67,11 @@ public class PublishController {
 
         System.out.println(question);
 
-        questionMapper.creatQuestion(question);
+        int creatQuestionOutput = questionMapper.creatQuestion(question);
 
-        System.out.println("添加成功");
+        if (creatQuestionOutput != 0) {
+            System.out.println("成功添加 " + creatQuestionOutput + " 条记录");
+        }
 
         module.addAttribute("success", "添加成功");
 

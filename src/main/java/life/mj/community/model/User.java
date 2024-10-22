@@ -22,6 +22,7 @@ public class User {
     private Long gmtModified;
     // 头像
     private String avatarUrl;
+    private String Authorization;
 
     @Override
     public String toString() {
@@ -33,6 +34,7 @@ public class User {
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", avatarUrl='" + avatarUrl + '\'' +
+                ", Authorization='" + Authorization + '\'' +
                 '}';
     }
 

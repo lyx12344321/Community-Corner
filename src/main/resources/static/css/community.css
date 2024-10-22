@@ -167,3 +167,7 @@
 .red {
     color: red !important;
 }
+
+hr {
+    border-top: 2px solid #eee;
+}
